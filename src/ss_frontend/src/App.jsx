@@ -24,6 +24,7 @@ function App() {
         <button type="submit">Click Me!</button>
       </form>
       <section id="greeting">{greeting}</section>
+      <h1 className="text-red-600">hello asdasdaasdasd</h1>
     </main>
   );
 }
