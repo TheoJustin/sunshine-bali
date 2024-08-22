@@ -14,7 +14,7 @@ const ProfileSidebar = () => {
         <div className="mt-4 mb-4 pr-8 pl-8">
           <Link to='/login' className="btn btn-wide btn-outline btn-primary">
             Login using internet identity
-          </Link>
+          </Link>   
         </div>
       </div>
     </>
