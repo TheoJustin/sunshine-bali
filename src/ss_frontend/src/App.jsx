@@ -1,20 +1,31 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
-import { RoutesList } from "../Routes/Route";
+import { useState } from 'react';
+import { ss_backend } from 'declarations/ss_backend';
 
 function App() {
+  const [greeting, setGreeting] = useState('');
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const name = event.target.elements.name.value;
+    ss_backend.greet(name).then((greeting) => {
+      setGreeting(greeting);
+    });
+    return false;
+  }
+
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <main>
-          <Routes>
-            {RoutesList.map((route, index) => (
-              <Route key={index} path={route.path} element={route.element} />
-            ))}
-          </Routes>
-        </main>
-      </AuthProvider>
-    </BrowserRouter>
+    <main>
+      <img src="/logo2.svg" alt="DFINITY logo" />
+      <br />
+      <br />
+      <form action="#" onSubmit={handleSubmit}>
+        <label htmlFor="name">Enter your name: &nbsp;</label>
+        <input id="name" alt="Name" type="text" />
+        <button type="submit">Click Me!</button>
+      </form>
+      <section id="greeting">{greeting}</section>
+      <h1 className="text-red-600">hello asdasdaasdasd</h1>
+    </main>
   );
 }
 
