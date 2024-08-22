@@ -32,6 +32,13 @@ actor {
 
   let posts = TrieMap.TrieMap<Text, Post>(Text.equal, Text.hash);
 
+  let friends = TrieMap.TrieMap<Text, Friend>(Text.equal, Text.hash);
+  type Friend = {
+    id : Text;
+    user1 : Principal;
+    user2 : Principal;
+  };
+
   public shared query func getPfp(userId : Principal) : async Text {
     let user : ?User = users.get(userId);
     switch (user) {
