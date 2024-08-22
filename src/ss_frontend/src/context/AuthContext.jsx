@@ -83,7 +83,13 @@ export const AuthProvider = ({ children, options = defaultOptions }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ login, updateClient }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        updateClient,
+        isAuthenticated,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

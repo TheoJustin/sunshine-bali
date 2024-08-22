@@ -12,12 +12,15 @@ actor {
   type User = {
     id : Principal;
     name : Text;
+    username: Text;
+    description: Text;
     email : Text;
     birth_date : Text;
     timestamp : Time.Time;
     profileUrl : Text;
     posts : [Text];
   };
+
   let users = TrieMap.TrieMap<Principal, User>(Principal.equal, Principal.hash);
 
   type Post = {

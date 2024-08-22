@@ -1,11 +1,11 @@
 import HomePage from "../src/pages/HomePage";
-import LoginPage from "../src/pages/LoginPage";
+import ProfilePage from "../src/pages/ProfilePage";
 
 export const RoutesList = [
     {
-        name: "Login",
-        path: "/login",
-        element: <LoginPage />
+        name: "Profile",
+        path: "/profile",
+        element: <ProfilePage />
     },
     {
         name: "Home",
