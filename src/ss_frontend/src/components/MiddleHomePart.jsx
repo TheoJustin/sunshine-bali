@@ -6,7 +6,7 @@ const MiddleHomePart = () => {
   return (
     <div className='w-1/2 h-full '>
         <TextInput />
-        <div className='mt-5'>
+        <div className='mt-5 flex flex-col gap-6'>
             <HomePost/>
             <HomePost/>
         </div>

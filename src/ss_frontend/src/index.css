@@ -37,3 +37,8 @@
 ::-webkit-scrollbar {
   width: 0.5rem;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff9f1c transparent;
+}

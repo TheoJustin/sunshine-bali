@@ -9,22 +9,26 @@ import { FaRegComment } from "react-icons/fa";
 
 const HomePost = ({ postId }) => {
     return (
-        <div className='border-black border w-full flex gap-4 justify-between p-4'>
-            <img className='rounded-full size-16' src={blank} alt="" />
-            <div className='w-full gap-4 flex flex-col'>
-                <div className='flex justify-between items-center'>
-                    <p className='text-3xl'>Name</p>
-                    <div className='flex items-center'>
-                        <IoCheckmark className='size-10' />
-                        <IoCloseOutline className='size-10' />
-
+        <div className='border-gray-200 border rounded-xl p-5 '>
+            <div className=' w-full flex gap-5 justify-between'>
+                <img className='rounded-full size-16' src={blank} alt="" />
+                <div className='w-full gap-4 flex flex-col'>
+                    <div className='flex justify-between items-center'>
+                        <p className='text-3xl font-medium'>Name</p>
+                    </div>
+                    <p className='text-xl '>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque labore sit velit laborum adipisci tenetur, quas assumenda culpa ipsa quasi explicabo cum nostrum facere est tempora corrupti, obcaecati, porro dolor!</p>
+                    <div className='w-full flex justify-start gap-4 p-4 overflow-x-scroll'>
+                        <img className='max-w-11/12 max-h-52  px rounded-lg' src={blank} alt="" />
+                        <img className='max-w-11/12 max-h-52  px rounded-lg' src={blank} alt="" />
+                        <img className='max-w-11/12 max-h-52  px rounded-lg' src={blank} alt="" />
+                        <img className='max-w-11/12 max-h-52  px rounded-lg' src={blank} alt="" />
+                        <img className='max-w-11/12 max-h-52  px rounded-lg' src={blank} alt="" />
                     </div>
                 </div>
-                <p className='text-xl '>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque labore sit velit laborum adipisci tenetur, quas assumenda culpa ipsa quasi explicabo cum nostrum facere est tempora corrupti, obcaecati, porro dolor!</p>
-                <div className='w-full flex justify-center p-4'>
-                    <img className='max-w-11/12  px rounded-lg' src={blank} alt="" />
-                </div>
-                <div className='flex gap-8'>
+            </div>
+            <div className='flex flex-col gap-4'>
+                
+                <div className='flex gap-8 justify-end'>
                     <div className='flex items-center gap-2'>
                         <IoIosHeartEmpty className='size-8' />
                         <p className='text-xl text-gray-500'>111</p>
@@ -34,16 +38,22 @@ const HomePost = ({ postId }) => {
                         <p className='text-xl text-gray-500'>111</p>
                     </div>
                 </div>
-
+                <details className="dropdown">
+                    <summary className="btn text-gray-500 text-lg m-1 w-full">We've detected that this project may have low reliability. Do you agree?</summary>
+                    <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-full text-lg p-2 shadow">
+                        <li><a>Yes</a></li>
+                        <li><a>No</a></li>
+                    </ul>
+                </details>
                 <hr />
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center h-[3rem] gap-3'>
                     <input
                         type="text"
                         placeholder="Type here"
                         className="input input-bordered pt-6 pb-6 w-full"
                     />
                     <div className='bg-orange-500 aspect-square h-full flex items-center justify-center rounded-lg'>
-                        <FaRegComment className='size-8 fill-white self-center' />
+                        <FaRegComment className='size-7 fill-white ' />
 
                     </div>
                 </div>

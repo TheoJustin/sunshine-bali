@@ -44,7 +44,7 @@ const TextInput = () => {
       />
       <LuImagePlus className="text-4xl cursor-pointer" />
       <HiOutlinePaperAirplane
-        className="text-4xl cursor-pointer mr-8"
+        className="text-4xl cursor-pointer"
         onClick={handleSend}
       />
     </div>

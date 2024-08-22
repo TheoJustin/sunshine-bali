@@ -14,7 +14,10 @@ const HomePage = () => {
           <ProfileSidebar />
         </div>
         <MiddleHomePart/>
-        <RightHomePart/>
+        <div className="sticky self-start top-4">
+          <RightHomePart/>
+
+        </div>
         {/* <TextInput /> */}
       </div>
     </div>
