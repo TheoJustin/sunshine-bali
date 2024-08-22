@@ -30,7 +30,7 @@ actor {
     images : [Text];
   };
 
-  let groups = TrieMap.TrieMap<Text, Post>(Text.equal, Text.hash);
+  let posts = TrieMap.TrieMap<Text, Post>(Text.equal, Text.hash);
 
   public shared query func getPfp(userId : Principal) : async Text {
     let user : ?User = users.get(userId);
