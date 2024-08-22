@@ -1,29 +1,37 @@
 import React, { useState } from "react";
 import NameForm from "./NameForm";
 import FormTemplate from "../../templates/FormTemplate";
-import RedAlert from "../../components/RedAlert";
+import { useAuth } from "../../hooks/UseAuth";
+import { useNavigate } from "react-router-dom";
+import { ss_backend } from "../../../../declarations/ss_backend";
 
 export default function ProfileForm() {
-  //   type User = {
-  //     id: Principal,
-  //     name: Text,
-  //     username: Text,
-  //     email: Text,
-  //     birth_date: Text,
-  //     timestamp: Time.Time,
-  //     profileUrl: Text,
-  //     posts: [Text],
-  //   };
-
+  const { user, principal } = useAuth();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [dob, setDob] = useState("");
+  const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
 
-  const finalize = () => {
-    console.log("tes");
-    
+  const finalize = async () => {
+    console.log(principal);
+    const resp = await ss_backend.register(
+      principal,
+      name,
+      username,
+      email,
+      "",
+      dob,
+      ""
+    );
+
+    console.log(resp);
+
+    if (resp) {
+      navigate(`/profile`);
+    }
   };
 
   return (
@@ -41,13 +49,23 @@ export default function ProfileForm() {
           />
         ) : step === 2 ? (
           <FormTemplate
-            title={"Enter your username"}
+            title={"Enter your username (Not Changeable)"}
             placeholder={"Username"}
             fieldType={"text"}
             step={step}
             setStep={setStep}
             value={username}
             setValue={setUsername}
+          />
+        ) : step === 3 ? (
+          <FormTemplate
+            title={"Enter your email"}
+            placeholder={"Email"}
+            fieldType={"text"}
+            step={step}
+            setStep={setStep}
+            value={email}
+            setValue={setEmail}
           />
         ) : (
           <FormTemplate

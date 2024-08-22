@@ -35,7 +35,7 @@ export default function FormTemplate({
             />
           </div>
         </div>
-      ) : step === 3 ? (
+      ) : step === 4 ? (
         <div className="w-full flex justify-between p-5 items-center">
           <div>
             <BiLeftArrow
@@ -48,7 +48,11 @@ export default function FormTemplate({
           </div>
           <button
             className="btn bg-cream-custom btn-sm hover:bg-cream-custom-hover text-lg px-8 h-[4vh]"
-            onClick={finalize}
+            onClick={() => {
+              if (finalize) {
+                finalize();
+              }
+            }}
           >
             Register
           </button>

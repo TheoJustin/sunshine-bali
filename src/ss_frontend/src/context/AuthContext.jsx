@@ -5,6 +5,7 @@ import {
   canisterId as internetIdentityCanisterId,
 } from "../../../declarations/internet_identity";
 import { AuthClient } from "@dfinity/auth-client";
+import { ss_backend } from "../../../declarations/ss_backend";
 
 const defaultOptions = {
   /**
@@ -70,6 +71,7 @@ export const AuthProvider = ({ children, options = defaultOptions }) => {
 
     const principal = identity.getPrincipal();
     setPrincipal(principal);
+    console.log(principal);
 
     setAuthClient(client);
 
@@ -80,6 +82,12 @@ export const AuthProvider = ({ children, options = defaultOptions }) => {
     });
 
     setUser(actor);
+    
+  }
+
+  async function getUser() {
+    const loggedInUser = await ss_backend.getUserById(principal);
+    return loggedInUser;
   }
 
   return (
@@ -88,6 +96,10 @@ export const AuthProvider = ({ children, options = defaultOptions }) => {
         login,
         updateClient,
         isAuthenticated,
+        user,
+        principal,
+        identity,
+        getUser
       }}
     >
       {children}
