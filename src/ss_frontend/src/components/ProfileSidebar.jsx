@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const ProfileSidebar = () => {
   return (
@@ -11,9 +12,9 @@ const ProfileSidebar = () => {
         <p className="text-2xl pt-8">You haven't logged in yet</p>
         <div className="border border-neutral-400 w-full mt-4 -mx-8"></div>
         <div className="mt-4 mb-4 pr-8 pl-8">
-          <button className="btn btn-wide btn-outline btn-primary">
+          <Link to='/login' className="btn btn-wide btn-outline btn-primary">
             Login using internet identity
-          </button>
+          </Link>
         </div>
       </div>
     </>
