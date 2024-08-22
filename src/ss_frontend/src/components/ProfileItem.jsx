@@ -10,7 +10,7 @@ const ProfileItem = ({name, followers, id}) => {
                 <h1 className='text-2xl font-medium'>{name}</h1>
                 <p className='text-lg text-gray-400'>{followers}</p>
             </div>
-            <button class="btn btn-primary text-lg ">Follow</button>
+            <button className="btn btn-primary text-lg ">Follow</button>
         </div>
     )
 }

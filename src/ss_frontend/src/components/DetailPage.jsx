@@ -1,15 +1,13 @@
 import React from 'react'
 import blank from '../assets/logo/blankprofpic.png'
-import { CiCircleCheck } from "react-icons/ci";
-import { IoCheckmark } from "react-icons/io5";
-import { IoCloseOutline } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaRegComments } from "react-icons/fa6";
 import { FaRegComment } from "react-icons/fa";
 
-const HomePost = ({ postId, choosePost }) => {
+const DetailPage = () => {
     return (
-        <div className='border-gray-200 border rounded-xl p-8' onClick={() => { choosePost(postId) }}>
+
+        <div className='border-gray-200 w-1/2 border rounded-xl h-fit p-8 '>
             <div className=' w-full flex gap-5 justify-between'>
                 <img className='rounded-full size-16' src={blank} alt="" />
                 <div className='w-full gap-4 flex flex-col'>
@@ -38,6 +36,7 @@ const HomePost = ({ postId, choosePost }) => {
                         <p className='text-xl text-gray-500'>111</p>
                     </div>
                 </div>
+                <button class="btn btn-warning text-lg h-[4rem]">I'm interested in funding this project</button>
                 <details className="dropdown">
                     <summary className="btn text-gray-500 text-lg m-1 w-full">We've detected that this project may have low reliability. Do you agree?</summary>
                     <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-full text-lg p-2 shadow">
@@ -45,21 +44,10 @@ const HomePost = ({ postId, choosePost }) => {
                         <li><a>No</a></li>
                     </ul>
                 </details>
-                {/* <hr /> */}
-                <div className='flex items-center h-[3rem] gap-3'>
-                    <input
-                        type="text"
-                        placeholder="Type here"
-                        className="input input-bordered pt-6 pb-6 w-full"
-                    />
-                    <div className='bg-orange-500 aspect-square h-full flex items-center justify-center rounded-lg'>
-                        <FaRegComment className='size-7 fill-white ' />
-
-                    </div>
-                </div>
+                
             </div>
         </div>
     )
 }
 
-export default HomePost
+export default DetailPage

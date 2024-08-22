@@ -24,21 +24,22 @@
   font-style: normal;
 }
 
+
+* {
+  scrollbar-width: none;
+  scrollbar-color: #ff9f1c transparent;
+  scrollbar-base-color: #ff9f1c;
+}
 ::-webkit-scrollbar-track {
-  background-color: transparent;
-  opacity: 0;
+  background-color: transparent !important;
+  opacity: 0 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ff9f1c;
-  border-radius: 10px;
+  background-color: #ff9f1c !important;
+  border-radius: 10px !important;
 }
 
 ::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #ff9f1c transparent;
+  width: 0.5rem !important;
 }
