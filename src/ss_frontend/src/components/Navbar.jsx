@@ -7,7 +7,7 @@ import { AiTwotoneAppstore } from "react-icons/ai";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 sticky top-0">
+    <div className="navbar bg-base-100">
       <div className="flex-1 flex-row ml-8">
         <img src={logo} alt="sunshine logo" className="w-16 h-16" />
         <a className="btn btn-ghost text-xl">Sunshine - Socialfi</a>

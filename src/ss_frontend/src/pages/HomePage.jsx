@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import TextInput from "../components/TextInput";
-import ProfileSidebar from "../components/ProfileSidebar";
 
 const HomePage = () => {
   return (
