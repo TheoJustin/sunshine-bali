@@ -16,10 +16,12 @@ export default function ProfileDetailPage() {
     if (!isLoading) {
       if (data.ok) {
         setUsername(data.ok.username);
+      } else {
+        navigate(`/profile-form`);
       }
     }
   }, [data, isLoading]);
-  
+
   // masukin post
-  return <div>{username}</div>;
+  return <div className="p-32">{username}</div>;
 }

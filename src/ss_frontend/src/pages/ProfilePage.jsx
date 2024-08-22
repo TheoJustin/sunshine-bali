@@ -17,16 +17,6 @@ export default function ProfilePage() {
     queryFn: getUser,
   });
 
-  useEffect(() => {
-    if (!isLoading) {
-      if (data.ok) {
-        navigate(`/profile`);
-      } else {
-        navigate(`/profile-form`);
-      }
-    }
-  }, [data, isLoading]);
-
   return (
     <>
       <MainTemplate>
