@@ -6,12 +6,6 @@
         "strictPropertyInitialization": false,
         "moduleResolution": "node",
         "allowJs": true,
-        "outDir": "HACK_BECAUSE_OF_ALLOW_JS",
-        "baseUrl": ".",
-        "paths": {
-            "@assets/*": [
-                "src/assets/*"
-            ],
-        }
+        "outDir": "HACK_BECAUSE_OF_ALLOW_JS"
     }
 }

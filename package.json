@@ -16,7 +16,7 @@
   "workspaces": [
     "src/ss_frontend"
   ],
-  "dependencies": {
-    "firebase": "^10.13.0"
+  "devDependencies": {
+    "daisyui": "^4.12.10"
   }
 }
