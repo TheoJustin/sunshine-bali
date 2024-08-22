@@ -15,5 +15,8 @@
   "type": "module",
   "workspaces": [
     "src/ss_frontend"
-  ]
+  ],
+  "devDependencies": {
+    "daisyui": "^4.12.10"
+  }
 }
