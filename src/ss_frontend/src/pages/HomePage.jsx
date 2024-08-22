@@ -2,16 +2,20 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import TextInput from "../components/TextInput";
 import ProfileSidebar from "../components/ProfileSidebar";
+import MiddleHomePart from "../components/MiddleHomePart";
+import RightHomePart from "../components/RightHomePart";
 
 const HomePage = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="flex mt-8 gap-8 h-screen">
-        <div className="sticky self-center top-0">
+      <div className="flex mt-8 justify-around ">
+        <div className="sticky self-start top-4">
           <ProfileSidebar />
         </div>
-        <TextInput />
+        <MiddleHomePart/>
+        <RightHomePart/>
+        {/* <TextInput /> */}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ProfileSidebar = () => {
   return (
     <>
-      <div className="ml-4 border-2 border-neutral-400 rounded flex-col flex max-w-md justify-center items-center w-full">
+      <div className=" border-2 border-neutral-400 rounded flex-col flex max-w-md justify-center items-center w-full">
         <div className="border-2 rounded-full border-neutral-500 mt-4">
           <AiOutlineUser className="text-6xl"></AiOutlineUser>
         </div>
