@@ -14,7 +14,7 @@ const TextInput = () => {
     console.log(inputText)
     
     try {
-      const response = await fetch("http://localhost:5000/analyze", {
+      const response = await fetch("https://web-production-d8ae.up.railway.app/analyze", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

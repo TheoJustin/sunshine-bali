@@ -3,6 +3,7 @@ import blank from '../assets/logo/blankprofpic.png'
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaRegComments } from "react-icons/fa6";
 import { FaRegComment } from "react-icons/fa";
+import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 
 const DetailPage = () => {
     return (
@@ -34,6 +35,10 @@ const DetailPage = () => {
                     <div className='flex items-center gap-2'>
                         <FaRegComments className='size-8' />
                         <p className='text-xl text-gray-500'>111</p>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                        <RiMoneyDollarCircleLine className='size-8' />
+                        <p className='text-xl text-gray-500'>funded by 111 users</p>
                     </div>
                 </div>
                 <button class="btn btn-warning text-lg h-[4rem]">I'm interested in funding this project</button>
