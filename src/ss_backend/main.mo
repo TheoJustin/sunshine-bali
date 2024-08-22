@@ -99,6 +99,6 @@ actor {
          allUsers.add(user);
       };
 
-      return #ok(Vector.toArray(allUsers));
+      return #ok(Vector.toArray(allUsers)); 
    };
 };

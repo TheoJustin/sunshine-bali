@@ -13,6 +13,8 @@ export default function ProfileDetailPage() {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
+    console.log(data);
+    
     if (!isLoading) {
       if (data.ok) {
         setUsername(data.ok.username);
