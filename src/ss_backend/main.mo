@@ -33,18 +33,18 @@ actor {
     category : Text;
     timestamp : Time.Time;
     images : [Text];
-    comments: [Text];
-    positive: Nat;
-    negative: Nat;
-    positiveVotes: Nat;
-    negativeVotes: Nat;
-    likes: [Principal];
+    comments : [Text];
+    positive : Nat;
+    negative : Nat;
+    positiveVotes : Nat;
+    negativeVotes : Nat;
+    likes : [Principal];
   };
 
   type Comment = {
-    id: Text;
-    sender: Principal;
-    comment: Text;
+    id : Text;
+    sender : Principal;
+    comment : Text;
   };
 
   type Friend = {
@@ -121,6 +121,74 @@ actor {
     return #ok(Vector.toArray(allUsers));
   };
 
- 
+  //  post
+  public func createPost(userId : Principal, description : Text, images : [Text]) : async Bool {
+    let newId = await generateUUID();
+
+    let currUser = await getUserById(userId);
+
+    // id : Text;
+    // description : Text;
+    // sender : Principal;
+    // category : Text;
+    // timestamp : Time.Time;
+    // images : [Text];
+    // comments: [Text];
+    // positive: Nat;
+    // negative: Nat;
+    // positiveVotes: Nat;
+    // negativeVotes: Nat;
+    // likes: [Principal];
+
+    switch (currUser) {
+      case (#ok(currUser)) {
+        let post : Post = {
+          id = newId;
+          description = description;
+          sender = userId;
+          category = "";
+          timestamp = Time.now();
+          images = images;
+          comments = [];
+          positive = 0;
+          negative = 0;
+          positiveVotes = 0;
+          negativeVotes = 0;
+          likes = [];
+        };
+
+        posts.put(newId, post);
+      };
+
+      case (#err(_error)) {
+        return false;
+      };
+    };
+
+    return true;
+  };
+
+  public query func getAllPosts() : async Result.Result<[Post], Text> {
+
+    var tempPosts = Vector.Vector<Post>();
+
+    for (post in posts.vals()) {
+      tempPosts.add(post);
+    };
+
+    return #ok(Vector.toArray(tempPosts));
+  };
+
+  public query func getPostById(postId : Text) : async Result.Result<Post, Text> {
+    let post = posts.get(postId);
+    switch (post) {
+      case (?post) {
+        return #ok(post);
+      };
+      case (null) {
+        return #err("Post not found!");
+      };
+    };
+  };
 
 };
