@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/UseAuth'
 import { useMutation } from '@tanstack/react-query'
 import { ss_backend } from "../../../declarations/ss_backend";
 
-const MiddleHomePart = ({ setCurrPost }) => {
+const MiddleHomePart = ({ setCurrPost, currPost }) => {
   const { isAuthenticated, user } = useAuth();
   const [posts, setPosts] = useState([]);
 

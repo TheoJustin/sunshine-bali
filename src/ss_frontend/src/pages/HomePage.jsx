@@ -7,7 +7,7 @@ import RightHomePart from "../components/RightHomePart";
 import DetailPage from "../components/DetailPage";
 import CommentDetailPage from "../components/CommentDetailPage";
 const HomePage = () => {
-  const [currPost, setCurrPost] = useState("");
+  const [currPost, setCurrPost] = useState();
 
   return (
     <>
@@ -17,8 +17,8 @@ const HomePage = () => {
           <div className="sticky self-start top-[5rem]">
             <ProfileSidebar />
           </div>
-          {currPost === "" ?
-            <MiddleHomePart setCurrPost={setCurrPost} /> : <DetailPage />}
+          {currPost === undefined ?
+            <MiddleHomePart setCurrPost={setCurrPost} currPost={currPost}/> : <DetailPage currPost={currPost}/>}
           {
             currPost === "" ? <div className="sticky self-start top-[5rem]">
               <RightHomePart />

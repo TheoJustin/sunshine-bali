@@ -22,6 +22,10 @@ const HomePost = ({ post, choosePost, refetch }) => {
     }
     useEffect(() => {
         checkLiked();
+        const user = ss_backend.getUserById(post.sender);
+        if(user.ok){
+            setName(user.ok.name);
+        }
     }, [liked, principal])
 
     async function handleLike() {
@@ -64,11 +68,11 @@ const HomePost = ({ post, choosePost, refetch }) => {
     }
     return (
         <div className='border-gray-200 border rounded-xl p-6 ' >
-            <div className=' w-full flex gap-5 justify-between cursor-pointer' onClick={() => { choosePost(post.id) }}>
+            <div className=' w-full flex gap-5 justify-between cursor-pointer' onClick={() => { choosePost(post) }}>
                 <img className='rounded-full w-[10%] h-[10%]' src={blank} alt="" />
                 <div className='w-[85%] gap-3 flex flex-col'>
                     <div className='flex justify-between items-center'>
-                        <p className='text-xl font-medium'>{post.name}</p>
+                        <p className='text-xl font-medium'>{name}</p>
                     </div>
                     <p className='text-base '>{post.description}</p>
                     {post.images.length != 0 && (
