@@ -20,7 +20,7 @@ export default function ProfilePage() {
   return (
     <>
       <MainTemplate>
-        {isAuthenticated ? <ProfileDetailPage /> : <NeedAuth />}
+        {isAuthenticated ? <div className="p-5 pt-32"><ProfileDetailPage /></div> : <NeedAuth />}
       </MainTemplate>
     </>
   );

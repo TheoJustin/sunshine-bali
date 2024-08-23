@@ -83,7 +83,12 @@ const Navbar = () => {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full flex justify-center items-center">
-              <AiOutlineUser alt="profile" className="text-4xl pl-1" />
+              <Link
+                to={"/profile"}
+                className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all"
+              >
+                <AiOutlineUser alt="profile" className="text-4xl pl-1" />
+              </Link>
             </div>
           </div>
         </div>
