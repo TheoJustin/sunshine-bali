@@ -80,7 +80,7 @@ const CommentDetailPage = ({ currPost, setCurrPost }) => {
             <p className='text-zinc-2xl font-medium'>Comments</p>
             {/* <hr /> */}
             <div className='flex flex-col gap-3 h-[80%] overflow-y-scroll'>
-                {comments && comments.length &&comments.length != 0 && comments.map((comment) => {
+                {comments.length != 0 && comments.map((comment) => {
                     // console.log(comment);
                     return (
                         <Comment comment={comment} />

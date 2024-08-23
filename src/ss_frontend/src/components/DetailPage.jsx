@@ -43,6 +43,13 @@ const DetailPage = ({ currPost, setCurrPost }) => {
         checkLiked();
     }
 
+    async function handleVote(sentiment) {
+        const result = await ss_backend.votePost(principal, currPost.id, sentiment);
+        console.log(result);
+        
+        refetch();
+    }
+
     return (
 
         <div className='border-gray-200 w-1/2 border rounded-xl h-fit p-8 '>
@@ -83,18 +90,18 @@ const DetailPage = ({ currPost, setCurrPost }) => {
                     <div className='flex items-center gap-2 cursor-pointer' onClick={handleLike}>
                         {liked == true ? <>
                             <IoMdHeart className='size-6' />
-                            <p className='text-lg text-gray-500'>{currPost && currPost.likes.length}</p>
+                            <p className='text-lg text-gray-500'>{currPost && currPost.likes && currPost.likes.length}</p>
                         </> : <><IoIosHeartEmpty className='size-6' />
-                            <p className='text-lg text-gray-500'>{currPost && currPost.likes.length}</p></>}
+                            <p className='text-lg text-gray-500'>{currPost && currPost.likes && currPost.likes.length}</p></>}
 
                     </div>
                     <div className='flex items-center gap-2'>
                         <FaRegComments className='size-6' />
-                        <p className='text-lg text-gray-500'>{currPost && currPost.comments.length}</p>
+                        <p className='text-lg text-gray-500'>{currPost && currPost.comments && currPost.comments.length}</p>
                     </div>
                     <div className='flex items-center gap-2'>
                         <RiMoneyDollarCircleLine className='size-6' />
-                        <p className='text-lg text-gray-500'>{currPost && currPost.investors.length}</p>
+                        <p className='text-lg text-gray-500'>{currPost && currPost.investors && currPost.investors.length}</p>
                     </div>
                 </div>
                 <button className="btn btn-warning text-lg h-[4rem]">I'm interested in funding this project</button>
@@ -102,8 +109,8 @@ const DetailPage = ({ currPost, setCurrPost }) => {
                     currPost.votingTriggered && <details className="dropdown">
                         <summary className="btn text-gray-500 text-base m-1 w-full">We've detected that this project may have low reliability</summary>
                         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-full text-lg p-2 shadow">
-                            <li><a>Yes</a></li>
-                            <li><a>No</a></li>
+                            <li onClick={() => { handleVote("Yes") }}><a>Yes</a></li>
+                            <li onClick={() => { handleVote("No") }}><a>No</a></li>
                         </ul>
                     </details>
                 }

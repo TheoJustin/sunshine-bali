@@ -269,15 +269,20 @@ actor {
         let post = await getPostById(postId);
         switch (post) {
           case (#ok(post)) {
-            let voters = post.voters;
-            let newVoters = Array.append<Principal>(voters, [user_id]);
-            var newPositiveVotes = post.positiveVotes;
-            var newNegativeVotes = post.negativeVotes;
-            // var newVotingTriggered = post.votingTriggered;
+            var newPositive = post.positiveVotes;
+            var newNegative = post.negativeVotes;
             if (sentiment == "Yes") {
-              newPositiveVotes += 1;
+              newPositive += 1;
             } else if (sentiment == "No") {
-              newNegativeVotes += 1;
+              newNegative += 1;
+            };
+            if (newPositive + newNegative >= 3) {
+
+              if (newNegative > newPositive) {
+                posts.delete(currPost);
+                return #ok("Deleted since many bad votes");
+              };
+
             };
             let newPost : Post = {
               id = post.id;
@@ -289,11 +294,11 @@ actor {
               comments = post.comments;
               positive = post.positive;
               negative = post.negative;
-              positiveVotes = newPositiveVotes;
-              negativeVotes = newNegativeVotes;
+              positiveVotes = newPositive;
+              negativeVotes = newNegative;
               votingTriggered = post.votingTriggered;
               investors = post.investors;
-              voters = newVoters;
+              voters = post.voters;
               likes = post.likes;
             };
             posts.put(postId, newPost);
@@ -311,6 +316,80 @@ actor {
       };
     };
   };
+  // public func votePost(userId : Principal, currPost : Text, sentiment: Text) : async Result.Result<Text, Text> {
+  //   let postId = currPost;
+  //   let user_id = userId;
+  //   if (Principal.isAnonymous(user_id)) {
+  //     return #err("Unauthorized");
+  //   };
+  //   let currUser = await getUserById(user_id);
+  //   switch (currUser) {
+  //     case (#ok(currUser)) {
+  //       let post = await getPostById(postId);
+  //       switch (post) {
+  //         case (#ok(post)) {
+  //           let likers = post.likes;
+  //           let oldLikers : Vector.Vector<Principal> = Vector.fromArray(post.likes);
+  //           let index = Vector.indexOf<Principal>(user_id, oldLikers, Principal.equal);
+  //           switch (index) {
+  //             case (?index) {
+  //               let newLikers = Array.append<Principal>(Array.subArray<Principal>(likers, 0, index), Array.subArray<Principal>(likers, index +1, oldLikers.size() - index - 1));
+  //               let newPost : Post = {
+  //                 id = post.id;
+  //                 description = post.description;
+  //                 sender = post.sender;
+  //                 category = post.category;
+  //                 timestamp = post.timestamp;
+  //                 images = post.images;
+  //                 comments = post.comments;
+  //                 positive = post.positive;
+  //                 negative = post.negative;
+  //                 positiveVotes = post.positiveVotes;
+  //                 negativeVotes = post.negativeVotes;
+  //                 votingTriggered = post.votingTriggered;
+  //                 investors = post.investors;
+  //                 voters = post.voters;
+  //                 likes = newLikers;
+  //               };
+  //               posts.put(postId, newPost);
+  //               return #ok("Unliked");
+  //             };
+  //             case (null) {
+  //               let newLikers = Array.append<Principal>(likers, [user_id]);
+  //               let newPost : Post = {
+  //                 id = post.id;
+  //                 description = post.description;
+  //                 sender = post.sender;
+  //                 category = post.category;
+  //                 timestamp = post.timestamp;
+  //                 images = post.images;
+  //                 comments = post.comments;
+  //                 positive = post.positive;
+  //                 negative = post.negative;
+  //                 positiveVotes = post.positiveVotes;
+  //                 negativeVotes = post.negativeVotes;
+  //                 votingTriggered = post.votingTriggered;
+  //                 investors = post.investors;
+  //                 voters = post.voters;
+  //                 likes = newLikers;
+  //               };
+  //               posts.put(postId, newPost);
+  //               return #ok("Liked");
+  //             };
+  //           };
+  //         };
+  //         case (#err(msg)) {
+  //           return #err("Post error");
+  //         };
+  //       };
+  //       // comments.put(newId, comment);
+
+  //     };
+  //     case (#err(error)) {
+  //       return #err("not found!");
+  //     };
+  //   };
+  // };
 
   public func likePost(userId : Principal, currPost : Text) : async Result.Result<Text, Text> {
     let postId = currPost;
@@ -386,6 +465,8 @@ actor {
       };
     };
   };
+  
+  
 
   public func isVoted(userId : Principal, currPost : Text) : async Bool {
     let post = await getPostById(currPost);

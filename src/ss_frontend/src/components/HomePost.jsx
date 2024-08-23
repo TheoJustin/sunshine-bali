@@ -40,6 +40,11 @@ const HomePost = ({ post, choosePost, refetch }) => {
         checkLiked();
     }
 
+    async function handleVote(sentiment){
+        const result = await ss_backend.votePost(principal, post.id, sentiment);
+        refetch();
+    }
+
     
     async function handleComment() {
         try {
@@ -116,8 +121,8 @@ const HomePost = ({ post, choosePost, refetch }) => {
                     post.votingTriggered && <details className="dropdown">
                         <summary className="btn text-gray-500 text-base m-1 w-full">We've detected that this project may have low reliability</summary>
                         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-full text-lg p-2 shadow">
-                            <li><a>Yes</a></li>
-                            <li><a>No</a></li>
+                            <li onClick={()=>{handleVote("Yes")}}><a>Yes</a></li>
+                            <li onClick={()=>{handleVote("No")}}><a>No</a></li>
                         </ul>
                     </details>
                 }
