@@ -22,6 +22,8 @@ const ProfileSidebar = () => {
         setUsername(data.ok.username);
         setName(data.ok.name)
       } else {
+        console.log(data);
+        
         setName("Something's wrong");
       }
     }
@@ -34,7 +36,7 @@ const ProfileSidebar = () => {
           <AiOutlineUser className="text-6xl"></AiOutlineUser>
         </div>
         <div className="mt-4 mb-4 pr-8 pl-8 flex flex-col items-center">
-          {isAuthenticated}
+          {/* {isAuthenticated} */}
           {isAuthenticated ? (
             <>
               <div className="font-semibold text-2xl">{name}</div>
