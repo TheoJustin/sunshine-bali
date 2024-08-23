@@ -1,67 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import MainTemplate from "../templates/MainTemplate";
 import profile_1 from "../assets/about/theo.jpg";
 import profile_2 from "../assets/about/ryan.jpg";
 import People from "../components/People";
+import { ss_backend } from "../../../declarations/ss_backend";
+
+// Create a QueryClient instance
+const queryClient = new QueryClient();
 
 const PeoplePage = () => {
+  const [people, setPeople] = useState();
+  const { isLoading, error, isFetching } = useQuery({
+    queryKey: ["fetchUsers"],
+    queryFn: fetchUsers,
+  });
+
+  useEffect(() => {
+    fetchUsers();
+  }, [people]);
+
+  async function fetchUsers() {
+    const users = await ss_backend.getAllUsers();
+    console.log(users);
+    if (users.ok) {
+      const listItems = users.ok.map(
+        ([name, profileUrl, description, username]) => (
+          <People
+            name={name}
+            description={description}
+            profileUrl={profileUrl}
+            username={username}
+          />
+        )
+      );
+      setPeople(listItems);
+    }
+    return true;
+  }
+
   return (
     <MainTemplate>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 pt-24">
-        <People
-          name="Theo Justin Amantha"
-          username="theo"
-          profileUrl={profile_1}
-          description="Lead Developer at Sunshine"
-        />
-        <People
-          name="Ryan Ray Wantouw Oei"
-          username="ryan"
-          profileUrl={profile_2}
-          description="Backend Engineer"
-        />
-        <People
-          name="Theo Justin Amantha"
-          username="theo"
-          profileUrl={profile_1}
-          description="Lead Developer at Sunshine"
-        />
-        <People
-          name="Ryan Ray Wantouw Oei"
-          username="ryan"
-          profileUrl={profile_2}
-          description="Backend Engineer"
-        />
-        <People
-          name="Theo Justin Amantha"
-          username="theo"
-          profileUrl={profile_1}
-          description="Lead Developer at Sunshine"
-        />
-        <People
-          name="Ryan Ray Wantouw Oei"
-          username="ryan"
-          profileUrl={profile_2}
-          description="Backend Engineer"
-        />
-        <People
-          name="Theo Justin Amantha"
-          username="theo"
-          profileUrl={profile_1}
-          description="Lead Developer at Sunshine"
-        />
-        <People
-          name="Ryan Ray Wantouw Oei"
-          username="ryan"
-          profileUrl={profile_2}
-          description="Backend Engineer"
-        />
-        <People
-          name="Ryan Ray Wantouw Oei"
-          username="ryan"
-          profileUrl={profile_2}
-          description="Backend Engineer"
-        />
+        {isLoading || isFetching ? <></> : people}
       </div>
     </MainTemplate>
   );

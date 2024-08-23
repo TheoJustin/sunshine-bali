@@ -3,6 +3,7 @@ import HomePage from "../src/pages/HomePage";
 import PeoplePage from "../src/pages/PeoplePage";
 import ProfileForm from "../src/pages/ProfileForm/ProfileForm";
 import ProfilePage from "../src/pages/ProfilePage";
+import SearchPage from "../src/pages/SearchPage";
 
 export const RoutesList = [
   {
@@ -29,5 +30,10 @@ export const RoutesList = [
     name: "People",
     path: "/people",
     element: <PeoplePage />,
+  },
+  {
+    name: "Search",
+    path: "/search",
+    element: <SearchPage />,
   },
 ];

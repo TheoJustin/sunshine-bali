@@ -25,7 +25,7 @@ const AboutPage = () => {
             }}
           />
           <p className="font-bold text-4xl z-10 mt-10">About Sunshine</p>
-          <p className="mt-4 font-semibold text-lg z-10">
+          <p className="mt-4 font-semibold text-xl z-10">
             Socialfi Crowdfunding with DAO system and NLP AI integration
           </p>
         </div>
