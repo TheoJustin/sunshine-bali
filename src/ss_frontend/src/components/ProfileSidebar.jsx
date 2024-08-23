@@ -17,7 +17,7 @@ const ProfileSidebar = () => {
   useEffect(() => {
     console.log(data);
     
-    if (!isLoading) {
+    if (!isLoading && data != undefined) {
       if (data.ok) {
         setUsername(data.ok.username);
         setName(data.ok.name)

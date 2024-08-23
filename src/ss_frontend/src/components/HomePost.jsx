@@ -19,11 +19,11 @@ const HomePost = ({ postId, choosePost }) => {
                     </div>
                     <p className='text-base '>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque labore sit velit laborum adipisci tenetur, quas assumenda culpa ipsa quasi explicabo cum nostrum facere est tempora corrupti, obcaecati, porro dolor!</p>
                     <div className='w-full flex justify-start gap-4 p-4 overflow-x-scroll'>
-                        <img className='max-w-52 max-h-36  px rounded-lg' src={blank} alt="" />
-                        <img className='max-w-52 max-h-36  px rounded-lg' src={blank} alt="" />
-                        <img className='max-w-52 max-h-36  px rounded-lg' src={blank} alt="" />
-                        <img className='max-w-52 max-h-36  px rounded-lg' src={blank} alt="" />
-                        <img className='max-w-52 max-h-36  px rounded-lg' src={blank} alt="" />
+                        <img className='max-w-52 max-h-36  rounded-lg' src={blank} alt="" />
+                        <img className='max-w-52 max-h-36  rounded-lg' src={blank} alt="" />
+                        <img className='max-w-52 max-h-36  rounded-lg' src={blank} alt="" />
+                        <img className='max-w-52 max-h-36  rounded-lg' src={blank} alt="" />
+                        <img className='max-w-52 max-h-36  rounded-lg' src={blank} alt="" />
                     </div>
                 </div>
             </div>
