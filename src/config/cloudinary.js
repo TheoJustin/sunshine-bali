@@ -2,7 +2,7 @@ import { Cloudinary } from "@cloudinary/url-gen";
 
 export const cld = new Cloudinary({ cloud: { cloudName: "dau03r7yn" } });
 
-export async function uploadImage({ file, onLoading }) {
+export async function uploadImage(file, onLoading)   {
   onLoading(true);
   const formData = new FormData();
   formData.append("file", file);
