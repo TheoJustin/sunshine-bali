@@ -1,5 +1,6 @@
 import AboutPage from "../src/pages/AboutPage";
 import HomePage from "../src/pages/HomePage";
+import PeoplePage from "../src/pages/PeoplePage";
 import ProfileForm from "../src/pages/ProfileForm/ProfileForm";
 import ProfilePage from "../src/pages/ProfilePage";
 
@@ -23,5 +24,10 @@ export const RoutesList = [
     name: "About",
     path: "/about",
     element: <AboutPage />,
+  },
+  {
+    name: "People",
+    path: "/people",
+    element: <PeoplePage />,
   },
 ];

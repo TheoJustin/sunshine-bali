@@ -15,9 +15,9 @@ const Navbar = () => {
       </Link>
       <div className="flex gap-4">
         <div className="flex mr-8 gap-8">
-          <Link to={'/'} className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
+          <Link to={'/people'} className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
             <AiOutlineTeam className="text-3xl" />
-            <p className="text-sm">Friends</p>
+            <p className="text-sm">People</p>
           </Link>
           <Link to={'/'} className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
             <AiTwotoneAppstore className="text-3xl" />
