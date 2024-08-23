@@ -4,28 +4,29 @@ import { AiOutlineUser } from "react-icons/ai";
 import { AiFillAliwangwang } from "react-icons/ai";
 import { AiOutlineTeam } from "react-icons/ai";
 import { AiTwotoneAppstore } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="navbar fixed bg-white z-10">
-      <div className="flex-1 flex-row ml-8">
+    <div className="navbar fixed bg-white z-20">
+      <Link to={'/'} className="flex-1 flex-row ml-8">
         <img src={logo} alt="sunshine logo" className="w-16 h-16" />
         <a className="btn btn-ghost text-xl">Sunshine - Socialfi</a>
-      </div>
+      </Link>
       <div className="flex gap-4">
         <div className="flex mr-8 gap-8">
-          <div className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
+          <Link to={'/'} className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
             <AiOutlineTeam className="text-3xl" />
             <p className="text-sm">Friends</p>
-          </div>
-          <div className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
+          </Link>
+          <Link to={'/'} className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
             <AiTwotoneAppstore className="text-3xl" />
             <p className="text-sm">Discover</p>
-          </div>
-          <div className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
+          </Link>
+          <Link to={'/about'} className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all">
             <AiFillAliwangwang className="text-3xl" />
             <p className="text-sm">About Us</p>
-          </div>
+          </Link>
         </div>
         <div className="form-control">
           <input
