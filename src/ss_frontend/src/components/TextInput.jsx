@@ -2,8 +2,12 @@ import React, { useRef, useState } from "react";
 import { HiOutlinePaperAirplane } from "react-icons/hi2";
 import { LuImagePlus } from "react-icons/lu";
 import { uploadImage } from "../../../config/cloudinary";
+import { ss_backend } from "../../../declarations/ss_backend";
+import { useAuth } from "../hooks/UseAuth";
+import { useMutation } from "@tanstack/react-query";
 
 const TextInput = () => {
+  const { principal, isAuthenticated } = useAuth();
   const [inputText, setInputText] = useState("");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,28 +19,40 @@ const TextInput = () => {
       return;
     }
 
-    console.log(inputText)
+    if (!isAuthenticated) {
+      alert("You must be logged in before posting.");
+      return;
+    }
 
-    try {
-      const response = await fetch(
-        "https://web-production-d8ae.up.railway.app/analyze",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ comment: inputText }),
-        }
-      );
+    console.log(inputText);
 
-      const data = await response.json();
-      if (response.ok) {
-        alert(`Classification: ${data.classification}`);
-      } else {
-        alert(`Error: ${data.error}`);
-      }
-    } catch (error) {
-      alert("Failed to send comment. Please try again later.");
+    // try {
+    //   const response = await fetch(
+    //     "https://web-production-d8ae.up.railway.app/analyze",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({ comment: inputText }),
+    //     }
+    //   );
+
+    //   const data = await response.json();
+    //   if (response.ok) {
+    //     alert(`Classification: ${data.classification}`);
+    //   } else {
+    //     alert(`Error: ${data.error}`);
+    //   }
+    // } catch (error) {
+    //   alert("Failed to send comment. Please try again later.");
+    // }
+
+    const resp = await ss_backend.createPost(principal, inputText, images);
+
+    if (resp) {
+      console.log("aman");
+      window.location.reload();
     }
   };
 
@@ -51,7 +67,6 @@ const TextInput = () => {
           if (url) {
             setImages((prevImages) => [...prevImages, url]);
             console.log(images);
-
           } else {
             throw new Error("Failed to upload image.");
           }
@@ -70,9 +85,16 @@ const TextInput = () => {
     }
   };
 
+  const { mutate: sendMutate, status: sendStatus } = useMutation({
+    mutationKey: ["checkSend"],
+    mutationFn: handleSend,
+  });
+
   return (
     <div className="mb-5">
-      <h1 className="pl-[1rem] text-xl font-medium">Any project you wanna share?</h1>
+      <h1 className="pl-[1rem] text-xl font-medium">
+        Any project you wanna share?
+      </h1>
       <div className="flex justify-between items-center gap-5">
         <input
           type="text"
@@ -93,20 +115,24 @@ const TextInput = () => {
         />
         <HiOutlinePaperAirplane
           className="text-4xl cursor-pointer"
-          onClick={handleSend}
+          onClick={sendMutate}
         />
       </div>
-      {images.length != 0 &&
+      {images.length != 0 && (
         <div className="items-center w-full flex justify-start gap-4 p-4 overflow-x-scroll">
           {images.map((imageUrl) => {
-            return(
-            <div className="">
-              <img src={imageUrl} className="max-w-52 max-h-36 rounded-lg" alt="" />
-            </div>
-            )
+            return (
+              <div className="">
+                <img
+                  src={imageUrl}
+                  className="max-w-52 max-h-36 rounded-lg"
+                  alt=""
+                />
+              </div>
+            );
           })}
         </div>
-      }
+      )}
     </div>
   );
 };
