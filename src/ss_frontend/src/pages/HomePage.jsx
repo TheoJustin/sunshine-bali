@@ -26,8 +26,6 @@ const HomePage = () => {
             </div> : <CommentDetailPage currPost={currPost} setCurrPost={setCurrPost}/>
           }
 
-          
-
           {/* <TextInput /> */}
         </div>
       </div>

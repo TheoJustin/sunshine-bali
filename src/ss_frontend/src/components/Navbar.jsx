@@ -21,6 +21,7 @@ const Navbar = () => {
         e.preventDefault();
         console.log(searchKey);
         navigate(`/search?query=${searchKey}`);
+        window.location.reload();
       }
     };
 

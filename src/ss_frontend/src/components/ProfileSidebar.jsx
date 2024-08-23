@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/UseAuth";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import profilePlaceholder from "../assets/profilePlaceholder.jpg"
 
 const ProfileSidebar = () => {
   const { isAuthenticated, getUser, user } = useAuth();
@@ -14,16 +15,18 @@ const ProfileSidebar = () => {
   });
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
+  const [pfp, setPfp] = useState("");
   useEffect(() => {
     console.log(data);
-    
+
     if (!isLoading && data != undefined) {
       if (data.ok) {
         setUsername(data.ok.username);
-        setName(data.ok.name)
+        setName(data.ok.name);
+        setPfp(data.ok.profileUrl);
       } else {
         console.log(data);
-        
+
         setName("Something's wrong");
       }
     }
@@ -33,7 +36,16 @@ const ProfileSidebar = () => {
     <>
       <div className=" border-gray-200 border rounded-xl flex-col flex max-w-md items-center w-[20vw]">
         <div className="border-2 rounded-full border-neutral-500 mt-4">
-          <AiOutlineUser className="text-6xl"></AiOutlineUser>
+          {isAuthenticated ? (
+            <img
+              id="profileImage"
+              src={pfp === "" ? profilePlaceholder : pfp}
+              alt="Upload a file"
+              className="object-cover w-24 h-24 rounded-full"
+            />
+          ) : (
+            <AiOutlineUser className="text-6xl"></AiOutlineUser>
+          )}
         </div>
         <div className="mt-4 mb-4 pr-8 pl-8 flex flex-col items-center">
           {/* {isAuthenticated} */}

@@ -222,6 +222,33 @@ actor {
     return #ok(Vector.toArray(tempPosts));
   };
 
+  func containsInsensitive(text : Text, pattern : Text) : Bool {
+    let lowerText = Text.toLowercase(text);
+    let lowerPattern = Text.toLowercase(pattern);
+    return Text.contains(lowerText, #text lowerPattern);
+  };
+
+  public func searchPost(searchQuery : Text) : async Result.Result<[Post], Text> {
+
+    var allSearchPosts = Vector.Vector<Post>();
+
+    if (searchQuery == "") {
+      for (post in posts.vals()) {
+        allSearchPosts.add(post);
+      };
+      return #ok(Vector.toArray(allSearchPosts));
+    } else {
+      for (post in posts.vals()) {
+        let contains = containsInsensitive(post.description, searchQuery);
+        if (contains) {
+          allSearchPosts.add(post);
+        };
+      };
+      return #ok(Vector.toArray(allSearchPosts));
+    };
+    return #ok(Vector.toArray(allSearchPosts));
+  };
+
   public query func getPostById(postId : Text) : async Result.Result<Post, Text> {
     let post = posts.get(postId);
     switch (post) {
@@ -465,8 +492,6 @@ actor {
       };
     };
   };
-  
-  
 
   public func isVoted(userId : Principal, currPost : Text) : async Bool {
     let post = await getPostById(currPost);
@@ -583,4 +608,5 @@ actor {
       };
     };
   };
+
 };
