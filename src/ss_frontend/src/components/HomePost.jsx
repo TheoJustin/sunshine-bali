@@ -42,6 +42,8 @@ const HomePost = ({ post, choosePost, refetch }) => {
 
     async function handleVote(sentiment){
         const result = await ss_backend.votePost(principal, post.id, sentiment);
+        console.log(result);
+        
         refetch();
     }
 

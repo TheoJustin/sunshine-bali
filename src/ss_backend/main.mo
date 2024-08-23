@@ -294,13 +294,15 @@ actor {
     switch (currUser) {
       case (#ok(currUser)) {
         let post = await getPostById(postId);
+        var newPositive = 0;
+        var newNegative = 0;
         switch (post) {
           case (#ok(post)) {
-            var newPositive = post.positiveVotes;
-            var newNegative = post.negativeVotes;
-            if (sentiment == "Yes") {
+             newPositive := post.positiveVotes;
+             newNegative := post.negativeVotes;
+            if (sentiment == "No") {
               newPositive += 1;
-            } else if (sentiment == "No") {
+            } else if (sentiment == "Yes") {
               newNegative += 1;
             };
             if (newPositive + newNegative >= 3) {
@@ -335,7 +337,7 @@ actor {
           };
         };
         // comments.put(newId, comment);
-        return #ok("Voted");
+        return #ok("negative votes" # Nat.toText(newNegative) # sentiment);
 
       };
       case (#err(error)) {
