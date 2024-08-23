@@ -75,7 +75,7 @@ const HomePost = ({ post, choosePost, refetch }) => {
                         <p className='text-xl font-medium'>{name}</p>
                     </div>
                     <p className='text-base '>{post.description}</p>
-                    {post.images.length != 0 && (
+                    {post && post.images && post.images.length != 0 && (
                         <div className="items-center w-full flex justify-start gap-4 p-4 overflow-x-scroll">
                             {post.images.map((imageUrl) => {
                                 return (
@@ -98,18 +98,18 @@ const HomePost = ({ post, choosePost, refetch }) => {
                     <div className='flex items-center gap-2 cursor-pointer' onClick={handleLike}>
                         {liked == true ? <>
                             <IoMdHeart className='size-6' />
-                            <p className='text-lg text-gray-500'>{post.likes.length}</p>
+                            <p className='text-lg text-gray-500'>{post && post.likes && post.likes.length}</p>
                         </> : <><IoIosHeartEmpty className='size-6' />
-                            <p className='text-lg text-gray-500'>{post.likes.length}</p></>}
+                            <p className='text-lg text-gray-500'>{post && post.likes && post.likes.length}</p></>}
 
                     </div>
                     <div className='flex items-center gap-2'>
                         <FaRegComments className='size-6' />
-                        <p className='text-lg text-gray-500'>{post.comments.length}</p>
+                        <p className='text-lg text-gray-500'>{post && post.comments && post.comments.length}</p>
                     </div>
                     <div className='flex items-center gap-2'>
                         <RiMoneyDollarCircleLine className='size-6' />
-                        <p className='text-lg text-gray-500'>{post.investors.length}</p>
+                        <p className='text-lg text-gray-500'>{post && post.investors && post.investors.length}</p>
                     </div>
                 </div>
                 {
