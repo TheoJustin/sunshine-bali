@@ -22,26 +22,24 @@ actor {
     posts : [Text];
   };
 
-  let users = TrieMap.TrieMap<Principal, User>(Principal.equal, Principal.hash);
-
   type Post = {
     id : Text;
     description : Text;
-    creatorUser : Principal;
+    sender: Text;
     category : Text;
     timestamp : Time.Time;
-    groupMembers : [Principal];
     images : [Text];
   };
 
-  let posts = TrieMap.TrieMap<Text, Post>(Text.equal, Text.hash);
-
-  let friends = TrieMap.TrieMap<Text, Friend>(Text.equal, Text.hash);
   type Friend = {
     id : Text;
     user1 : Principal;
     user2 : Principal;
   };
+
+  let users = TrieMap.TrieMap<Principal, User>(Principal.equal, Principal.hash);
+  let posts = TrieMap.TrieMap<Text, Post>(Text.equal, Text.hash);
+  let friends = TrieMap.TrieMap<Text, Friend>(Text.equal, Text.hash);
 
   public shared query func getPfp(userId : Principal) : async Text {
     let user : ?User = users.get(userId);
@@ -78,27 +76,30 @@ actor {
 
     return true;
   };
-  
+
   public query func getUserById(userId : Principal) : async Result.Result<User, Text> {
-      let user = users.get(userId);
-      switch (user) {
-         case (?user) {
-            return #ok(user);
-         };
-         case (null) {
-            return #err("User not found!");
-         };
+    let user = users.get(userId);
+    switch (user) {
+      case (?user) {
+        return #ok(user);
       };
-   };
-
-    public shared query func getAllUsers() : async Result.Result<[User], Text> {
-
-      var allUsers = Vector.Vector<User>();
-
-      for (user in users.vals()) {
-         allUsers.add(user);
+      case (null) {
+        return #err("User not found!");
       };
+    };
+  };
 
-      return #ok(Vector.toArray(allUsers)); 
-   };
+  public shared query func getAllUsers() : async Result.Result<[User], Text> {
+
+    var allUsers = Vector.Vector<User>();
+
+    for (user in users.vals()) {
+      allUsers.add(user);
+    };
+
+    return #ok(Vector.toArray(allUsers));
+  };
+
+  //  post
+
 };
