@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useQuery, QueryClient, QueryClientProvider } from "react-query";
+import { useQuery } from "react-query";
 import MainTemplate from "../templates/MainTemplate";
 import profile_1 from "../assets/about/theo.jpg";
 import profile_2 from "../assets/about/ryan.jpg";
 import People from "../components/People";
 import { ss_backend } from "../../../declarations/ss_backend";
-
-// Create a QueryClient instance
-const queryClient = new QueryClient();
 
 const PeoplePage = () => {
   const [people, setPeople] = useState();
@@ -42,7 +39,7 @@ const PeoplePage = () => {
   return (
     <MainTemplate>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 pt-24">
-        {isLoading || isFetching ? <></> : people}
+        {/* {isLoading || isFetching ? <></> : people} */}
       </div>
     </MainTemplate>
   );
