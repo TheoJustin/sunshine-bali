@@ -1,6 +1,6 @@
 import React from "react";
 
-const People = ({ name, username, profileUrl, description }) => {
+const User = ({ name, username, profileUrl, description }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
       <img
@@ -15,4 +15,4 @@ const People = ({ name, username, profileUrl, description }) => {
   );
 };
 
-export default People;
+export default User;

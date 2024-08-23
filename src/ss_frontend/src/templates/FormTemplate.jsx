@@ -9,7 +9,6 @@ export default function FormTemplate({
   setStep,
   value,
   setValue,
-  finalize,
 }) {
   return (
     <div className="flex flex-col gap-5 border rounded-lg">
@@ -34,28 +33,6 @@ export default function FormTemplate({
               size={30}
             />
           </div>
-        </div>
-      ) : step === 4 ? (
-        <div className="w-full flex justify-between p-5 items-center">
-          <div>
-            <BiLeftArrow
-              onClick={() => {
-                setStep(step - 1);
-              }}
-              className="cursor-pointer hover:scale-125 transition-transform"
-              size={30}
-            />
-          </div>
-          <button
-            className="btn bg-cream-custom btn-sm hover:bg-cream-custom-hover text-lg px-8 h-[4vh]"
-            onClick={() => {
-              if (finalize) {
-                finalize();
-              }
-            }}
-          >
-            Register
-          </button>
         </div>
       ) : (
         <div className="w-full flex justify-between p-5">

@@ -35,7 +35,7 @@ const Navbar = () => {
     <div className="navbar fixed bg-white z-20">
       <Link to={"/"} className="flex-1 flex-row ml-8">
         <img src={logo} alt="sunshine logo" className="w-16 h-16" />
-        <a className="btn btn-ghost text-xl">SocialFi</a>
+        <button className="btn btn-ghost text-xl">SocialFi</button>
       </Link>
       <div className="flex gap-4 mr-8">
         <div className="flex gap-8">
@@ -54,7 +54,7 @@ const Navbar = () => {
             </label>
           </div>
           <Link
-            to={"/people"}
+            to={"/users"}
             className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all"
           >
             <AiOutlineTeam className="text-3xl" />

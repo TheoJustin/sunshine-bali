@@ -1,9 +1,9 @@
 import AboutPage from "../src/pages/AboutPage";
 import HomePage from "../src/pages/HomePage";
-import PeoplePage from "../src/pages/PeoplePage";
 import ProfileForm from "../src/pages/ProfileForm/ProfileForm";
 import ProfilePage from "../src/pages/ProfilePage";
 import SearchPage from "../src/pages/SearchPage";
+import UsersPage from "../src/pages/UsersPage";
 
 export const RoutesList = [
   {
@@ -27,9 +27,9 @@ export const RoutesList = [
     element: <AboutPage />,
   },
   {
-    name: "People",
-    path: "/people",
-    element: <PeoplePage />,
+    name: "Users",
+    path: "/users",
+    element: <UsersPage />,
   },
   {
     name: "Search",
