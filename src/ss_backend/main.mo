@@ -3,7 +3,11 @@ import TrieMap "mo:base/TrieMap";
 import Principal "mo:base/Principal";
 import Result "mo:base/Result";
 import Text "mo:base/Text";
+import Blob "mo:base/Blob";
 import Vector "mo:vector/Class";
+import UUID "mo:uuid/UUID";
+import Source "mo:uuid/async/SourceV4";
+import Nat "mo:base/Nat";
 
 actor {
   public query func greet(name : Text) : async Text {
@@ -25,10 +29,22 @@ actor {
   type Post = {
     id : Text;
     description : Text;
-    sender: Text;
+    sender : Principal;
     category : Text;
     timestamp : Time.Time;
     images : [Text];
+    comments: [Text];
+    positive: Nat;
+    negative: Nat;
+    positiveVotes: Nat;
+    negativeVotes: Nat;
+    likes: [Principal];
+  };
+
+  type Comment = {
+    id: Text;
+    sender: Principal;
+    comment: Text;
   };
 
   type Friend = {
@@ -41,7 +57,12 @@ actor {
   let posts = TrieMap.TrieMap<Text, Post>(Text.equal, Text.hash);
   let friends = TrieMap.TrieMap<Text, Friend>(Text.equal, Text.hash);
 
-  public shared query func getPfp(userId : Principal) : async Text {
+  public func generateUUID() : async Text {
+    let g = Source.Source();
+    return UUID.toText(await g.new());
+  };
+
+  public query func getPfp(userId : Principal) : async Text {
     let user : ?User = users.get(userId);
     switch (user) {
       case (?user) {
@@ -54,7 +75,7 @@ actor {
     };
   };
 
-  public shared func register(userId : Principal, name : Text, username : Text, email : Text, description : Text, dob : Text, profileUrl : Text) : async Bool {
+  public func register(userId : Principal, name : Text, username : Text, email : Text, description : Text, dob : Text, profileUrl : Text) : async Bool {
 
     if (users.get(userId) != null) {
       return false;
@@ -89,7 +110,7 @@ actor {
     };
   };
 
-  public shared query func getAllUsers() : async Result.Result<[User], Text> {
+  public query func getAllUsers() : async Result.Result<[User], Text> {
 
     var allUsers = Vector.Vector<User>();
 
@@ -100,6 +121,6 @@ actor {
     return #ok(Vector.toArray(allUsers));
   };
 
-  //  post
+ 
 
 };
