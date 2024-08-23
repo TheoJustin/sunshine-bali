@@ -15,7 +15,7 @@ const TextInput = () => {
       return;
     }
 
-    console.log(inputText);
+    console.log(inputText)
 
     try {
       const response = await fetch(
@@ -50,6 +50,8 @@ const TextInput = () => {
           const url = await uploadImage(file, setLoading);
           if (url) {
             setImages((prevImages) => [...prevImages, url]);
+            console.log(images);
+
           } else {
             throw new Error("Failed to upload image.");
           }
@@ -69,28 +71,42 @@ const TextInput = () => {
   };
 
   return (
-    <div className="flex justify-between items-center gap-5">
-      <input
-        type="text"
-        placeholder="Type here"
-        className="input input-bordered pt-6 pb-6 w-full"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-      />
-      <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: "none" }}
-        onChange={handleImage}
-      />
-      <LuImagePlus
-        className="text-4xl cursor-pointer"
-        onClick={handleImageClick}
-      />
-      <HiOutlinePaperAirplane
-        className="text-4xl cursor-pointer"
-        onClick={handleSend}
-      />
+    <div className="mb-5">
+      <h1 className="pl-[1rem] text-xl font-medium">Any project you wanna share?</h1>
+      <div className="flex justify-between items-center gap-5">
+        <input
+          type="text"
+          placeholder="Type here"
+          className="input  pt-6 pb-6 w-full focus:outline-none focus:border-transparent"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+        />
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={handleImage}
+        />
+        <LuImagePlus
+          className="text-4xl cursor-pointer"
+          onClick={handleImageClick}
+        />
+        <HiOutlinePaperAirplane
+          className="text-4xl cursor-pointer"
+          onClick={handleSend}
+        />
+      </div>
+      {images.length != 0 &&
+        <div className="items-center w-full flex justify-start gap-4 p-4 overflow-x-scroll">
+          {images.map((imageUrl) => {
+            return(
+            <div className="">
+              <img src={imageUrl} className="max-w-52 max-h-36 rounded-lg" alt="" />
+            </div>
+            )
+          })}
+        </div>
+      }
     </div>
   );
 };
