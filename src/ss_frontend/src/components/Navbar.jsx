@@ -77,19 +77,13 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full flex justify-center items-center">
-              <Link
-                to={"/profile"}
-                className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all"
-              >
-                <AiOutlineUser alt="profile" className="text-4xl pl-1" />
-              </Link>
-            </div>
+          <div className="w-10 rounded-full flex justify-center items-center">
+            <Link
+              to={"/profile"}
+              className="flex flex-col justify-center items-center cursor-pointer hover:mb-2 hover:transition-all"
+            >
+              <AiOutlineUser className="text-4xl" />
+            </Link>
           </div>
         </div>
       </div>

@@ -18,7 +18,6 @@ export default function UsersPage() {
 
   async function fetchUsers() {
     const allUsers = await ss_backend.getAllUsers();
-    console.log(allUsers);
     if (Array.isArray(allUsers.ok) && allUsers.ok) {
       const listItems = allUsers.ok.map((user, idx) => (
         <User

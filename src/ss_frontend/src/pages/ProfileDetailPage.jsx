@@ -47,13 +47,25 @@ export default function ProfileDetailPage() {
             <AiOutlineUser className="text-6xl"></AiOutlineUser>
           )}
         </div>
-        <div className="mt-4 mb-4 pr-8 pl-8 flex flex-col items-center">
+        <div className="mt-4 mb-4 pr-8 pl-8 flex flex-col items-center gap-2">
           {/* {isAuthenticated} */}
           {isAuthenticated ? (
             <>
               <div className="font-semibold text-2xl">{name}</div>
               <p className="text-lg">{"@" + username}</p>
-              <button className="btn btn-error">Log out</button>
+              <div className="flex gap-5">
+                {data && data.ok && data.ok.username === "" && (
+                  <button
+                    className="btn btn-outline btn-info"
+                    onClick={() => {
+                      navigate(`/profile-form`);
+                    }}
+                  >
+                    Register
+                  </button>
+                )}
+                <button className="btn btn-outline btn-error">Log out</button>
+              </div>
             </>
           ) : (
             <Link
