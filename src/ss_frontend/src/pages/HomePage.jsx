@@ -18,15 +18,15 @@ const HomePage = () => {
             <ProfileSidebar />
           </div>
           {currPost === undefined ?
-            <MiddleHomePart setCurrPost={setCurrPost} currPost={currPost}/> : <DetailPage currPost={currPost}/>}
+            <MiddleHomePart setCurrPost={setCurrPost} currPost={currPost}/> : <DetailPage currPost={currPost} setCurrPost={setCurrPost}/>}
           {
-            currPost === "" ? <div className="sticky self-start top-[5rem]">
+            currPost === undefined ? <div className="sticky self-start top-[5rem]">
               <RightHomePart />
 
-            </div> : <CommentDetailPage />
+            </div> : <CommentDetailPage currPost={currPost} setCurrPost={setCurrPost}/>
           }
 
-          :
+          
 
           {/* <TextInput /> */}
         </div>

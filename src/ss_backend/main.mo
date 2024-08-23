@@ -119,6 +119,18 @@ actor {
     };
   };
 
+  public query func getCommentById(commentId : Text) : async Result.Result<Comment, Text> {
+    let comment = comments.get(commentId);
+    switch (comment) {
+      case (?comment) {
+        return #ok(comment);
+      };
+      case (null) {
+        return #err("User not found!");
+      };
+    };
+  };
+
   public query func getAllUsers() : async Result.Result<[User], Text> {
 
     var allUsers = Vector.Vector<User>();
@@ -128,6 +140,25 @@ actor {
     };
 
     return #ok(Vector.toArray(allUsers));
+  };
+
+  public func getAllCommentsAccordingToPost(post : Post) : async Result.Result<[Comment], Text> {
+
+    let commentIds = post.comments;
+    var allComments = Vector.Vector<Comment>();
+    for (commentId in commentIds.vals()) {
+      let comment = await getCommentById(commentId);
+      switch (comment) {
+        case (#ok(comment)) {
+          allComments.add(comment);
+        };
+        case (#err(msg)) {
+
+        };
+      };
+    };
+
+    return #ok(Vector.toArray(allComments));
   };
 
   //  post
@@ -348,7 +379,6 @@ actor {
           };
         };
         // comments.put(newId, comment);
-        
 
       };
       case (#err(error)) {

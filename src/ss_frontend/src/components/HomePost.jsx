@@ -57,7 +57,7 @@ const HomePost = ({ post, choosePost, refetch }) => {
             const data = await response.json();
             if (response.ok) {
                 alert(`Classification: ${data.classification}`);
-                const result = ss_backend.makeComment(principal, post.id, comment, data.classification);
+                const result = await ss_backend.makeComment(principal, post.id, comment, data.classification);
             } else {
                 alert(`Error: ${data.error}`);
             }
